@@ -45,6 +45,28 @@ class AsrModel(torch.nn.Module):
 ```
 > See `tests/test-fbank-onnx-export.py` for a full export example.
 
+## Numerical Comparison with Kaldi
+
+You can verify the numerical consistency with Kaldi using the provided test scripts:
+
+```bash
+python tests/test-fbank-diff-knf.py
+```
+
+**Example Output:**
+```text
+[6] Comparison test with kaldi-native-fbank (onnx_compatible=False)
+Our features shape: torch.Size([1, 298, 80])
+knf features shape: torch.Size([298, 80])
+All frames - Max diff: 0.000185, Mean diff: 0.000003
+✓ kaldi-native-fbank comparison passed! (Max diff < 0.001)
+
+[6] Comparison test with kaldi-native-fbank (onnx_compatible=True)
+Our features shape: torch.Size([1, 298, 80])
+knf features shape: torch.Size([298, 80])
+All frames - Max diff: 0.000180, Mean diff: 0.000007
+✓ kaldi-native-fbank comparison passed! (Max diff < 0.001)
+
 ## Directory Structure
 
 - `kaldi_filter_bank/`: Core implementation of the `Filterbank` module.
