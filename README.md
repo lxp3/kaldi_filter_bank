@@ -2,7 +2,7 @@
 
 An **ONNX-exportable** Mel Filterbank implementation in PyTorch, meticulously aligned with Kaldi's feature extraction behavior.
 
-This project was developed with the assistance of **Claude 3.5 Opus** and **Antigravity**.
+This project was developed with the assistance of **Claude Opus 4.5** and **Antigravity**.
 
 ## Core Features
 
