@@ -7,9 +7,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from kaldi_filter_bank.filter_bank import Filterbank
 
-def compare_knf(onnx_compatible=False):
+def compare_knf():
     """Comparison test with kaldi-native-fbank library"""
-    print(f"\n[6] Comparison test with kaldi-native-fbank (onnx_compatible={onnx_compatible})")
+    print(f"\n[6] Comparison test with kaldi-native-fbank")
     try:
         import kaldi_native_fbank as knf
         
@@ -39,7 +39,6 @@ def compare_knf(onnx_compatible=False):
             remove_dc_offset=True,
             snip_edges=True,
             use_energy=False,
-            onnx_compatible=onnx_compatible
         )
         our_features = our_fbank(test_waveform)
         
@@ -107,5 +106,4 @@ def compare_knf(onnx_compatible=False):
 
 if __name__ == "__main__":
     torch.manual_seed(42)
-    compare_knf(onnx_compatible=False)
-    compare_knf(onnx_compatible=True)
+    compare_knf()

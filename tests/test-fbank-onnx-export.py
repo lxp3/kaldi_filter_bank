@@ -23,7 +23,6 @@ def test_export_onnx():
             remove_dc_offset=True,
             snip_edges=True,
             use_energy=False,
-            onnx_compatible=True,  # Enable ONNX compatible mode
         )
         fbank.eval()
         dummy_input = torch.randn(1, 16000)

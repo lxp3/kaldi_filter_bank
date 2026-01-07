@@ -10,9 +10,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from kaldi_filter_bank.filter_bank import Filterbank
 
-def compare_kaldifeat(onnx_compatible=False):
+def compare_kaldifeat():
     """Comparison test with kaldifeat library"""
-    print(f"\n[4] Comparison test with kaldifeat (onnx_compatible={onnx_compatible})")
+    print(f"\n[4] Comparison test with kaldifeat")
     try:
         import kaldifeat
         
@@ -42,7 +42,6 @@ def compare_kaldifeat(onnx_compatible=False):
             remove_dc_offset=True,
             snip_edges=True,
             use_energy=False,
-            onnx_compatible=onnx_compatible
         )
         our_features = our_fbank(test_waveform)
         
@@ -117,5 +116,4 @@ def compare_kaldifeat(onnx_compatible=False):
 
 if __name__ == "__main__":
     torch.manual_seed(42)
-    compare_kaldifeat(onnx_compatible=False)
-    compare_kaldifeat(onnx_compatible=True)
+    compare_kaldifeat()

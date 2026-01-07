@@ -33,8 +33,8 @@ from kaldi_filter_bank.filter_bank import Filterbank
 class AsrModel(torch.nn.Module):
     def __init__(self, model):
         super().__init__()
-        # Use onnx_compatible=True for DFT-based FFT and dynamic framing
-        self.fbank = Filterbank(onnx_compatible=True)
+        # Filterbank now automatically detects ONNX export environment
+        self.fbank = Filterbank()
         self.model = model
 
     def forward(self, waveforms):
@@ -55,16 +55,10 @@ python tests/test-fbank-diff-knf.py
 
 **Example Output:**
 ```text
-[6] Comparison test with kaldi-native-fbank (onnx_compatible=False)
+[6] Comparison test with kaldi-native-fbank
 Our features shape: torch.Size([1, 298, 80])
 knf features shape: torch.Size([298, 80])
 All frames - Max diff: 0.000185, Mean diff: 0.000003
-✓ kaldi-native-fbank comparison passed! (Max diff < 0.001)
-
-[6] Comparison test with kaldi-native-fbank (onnx_compatible=True)
-Our features shape: torch.Size([1, 298, 80])
-knf features shape: torch.Size([298, 80])
-All frames - Max diff: 0.000180, Mean diff: 0.000007
 ✓ kaldi-native-fbank comparison passed! (Max diff < 0.001)
 ```
 
